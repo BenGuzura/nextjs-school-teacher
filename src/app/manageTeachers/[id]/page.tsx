@@ -13,24 +13,43 @@ import { FaEdit } from "react-icons/fa";
 
 
 
-const ManageTeachers = async ({ params, query }: { params: { id: any }, query: string }) => {
+// const ManageTeachers = async ({ params, query }: { params: { id: any }, query: string }) => {
 
 
 
-    let id = params.id
-    id = Number(id)
-    const school = await getSchoolID(id)
+//     let id = params.id
+//     id = Number(id)
+//     const school = await getSchoolID(id)
 
 
+//     if (!school) {
+//         notFound();
+//     }
+
+//      const schoolTeachers = school.teachers
+
+//     // console.log(schoolTeachers)
+
+//     const teachers = await getTeachers(query)
+
+
+
+interface PageProps {
+    params: { id: string };
+    searchParams: { [key: string]: string | string[] | undefined };
+  }
+  
+  const ManageTeachers = async ({ params, searchParams }: PageProps) => {
+    const id = Number(params.id);
+    const query = searchParams.query as string || '';
+    const school = await getSchoolID(id);
+  
     if (!school) {
-        notFound();
+      notFound();
     }
-
-     const schoolTeachers = school.teachers
-
-    // console.log(schoolTeachers)
-
-    const teachers = await getTeachers(query)
+  
+    const schoolTeachers = school.teachers;
+    const teachers = await getTeachers(query);
 
     return (
         <div className='flex  '>
