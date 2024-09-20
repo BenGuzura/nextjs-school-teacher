@@ -7,7 +7,7 @@ const page = () => {
       <div className="card mx-80 ">
          <div className="card-title text-center"> All Schools</div>
          <div className="card-body">
-            <TeahersTable />
+            <TeahersTable query='' />
          </div>
         
       </div>
